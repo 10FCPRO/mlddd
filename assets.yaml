@@ -11,7 +11,7 @@ DATASET:
     ROOT: './datasets/kit-ml' # KIT directory
     SPLIT_ROOT: './datasets/kit-ml' # KIT splits directory
   HUMANML3D:
-    ROOT: '/kaggle/input/humanml3d/humanml3d/humanml3d' # HumanML3D directory
+    ROOT: '/kaggle/input/humanml3d/humanml3d' # HumanML3D directory
     SPLIT_ROOT: '/kaggle/input/humanml3d/humanml3d' # HumanML3D splits directory
   HUMANACT12:
     ROOT: ./datasets/HumanAct12Poses
