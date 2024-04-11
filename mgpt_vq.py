@@ -83,7 +83,7 @@ class VQVae(nn.Module):
         # decoder
         
         x_decoder = self.decoder(x_quantized)
-        print("xdec: ",x_decoder)
+        print("xdec: ",x_decoder.size())
 
         x_out = self.postprocess(x_decoder)
 
