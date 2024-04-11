@@ -93,7 +93,8 @@ class VQVae(nn.Module):
         self,
         features: Tensor,
     ) -> Union[Tensor, Distribution]:
-
+        print("f size: ",features.size())
+        print("f shape: ",features.shape)
         N, T, _ = features.shape
         x_in = self.preprocess(features)
         x_encoder = self.encoder(x_in)
