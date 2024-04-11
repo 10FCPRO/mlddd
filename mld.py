@@ -664,7 +664,7 @@ class MLD(BaseModel):
             if self.vae_type in ["mld", "vposert", "actor"]:
                 feats_rst = self.vae.decode(z, lengths)
                 print(feats_rst)
-                print(feats_rst.size)
+                print(feats_rst.size())
             elif self.vae_type == "no":
                 feats_rst = z.permute(1, 0, 2)
 
@@ -687,7 +687,7 @@ class MLD(BaseModel):
         motions = motions[align_idx]
         feats_rst = feats_rst[align_idx]
         print(feats_rst)
-        print(feats_rst.size)
+        print(feats_rst.size())
         m_lens = m_lens[align_idx]
         m_lens = torch.div(m_lens,
                            self.cfg.DATASET.HUMANML3D.UNIT_LEN,
