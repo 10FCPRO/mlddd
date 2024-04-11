@@ -116,8 +116,9 @@ class MldVae(nn.Module):
         # Todo
         # remove and test this function
         print("Should Not enter here")
-
+        print("features size: ",features.size())
         z, dist = self.encode(features, lengths)
+        print("z size: ",z.size())
         feats_rst = self.decode(z, lengths)
         return feats_rst, z, dist
 
