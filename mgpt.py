@@ -423,6 +423,7 @@ class MotionGPT(BaseModel):
                     metrics_dicts.remove('PredMetrics')
 
                 for metric in metrics_dicts:
+                    print("$$$$$$$$$$ metric: ", metric)
                     lengths = batch['length']
                     if metric == "TemosMetric":
                         getattr(self.metrics,
