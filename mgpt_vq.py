@@ -72,29 +72,26 @@ class VQVae(nn.Module):
 
     def forward(self, features: Tensor):
         # Preprocess
+        print('f awel el forward features: ',features.size())
         x_in = self.preprocess(features)
-
+        print("ba3d function preprocess: ",x_in.size())
         # Encode
         x_encoder = self.encoder(x_in)
-        print("x_encoder or code_idx: ", x_encoder.size())
+        print("X_encoder or code_idx (ba3d el encoding fl forward): ",x_encoder.size())
         # quantization
         x_quantized, loss, perplexity = self.quantizer(x_encoder)
 
         # decoder
-        
         x_decoder = self.decoder(x_quantized)
-        print("xdec: ",x_decoder.size())
-
+        print("ba3d el decoding (fl forward): ",x_decoder.size())
         x_out = self.postprocess(x_decoder)
-
+        print("ba3d postprocess fl forward: ",x_out.size())
         return x_out, loss, perplexity
 
     def encode(
         self,
         features: Tensor,
     ) -> Union[Tensor, Distribution]:
-        print("f size: ",features.size())
-        print("f shape: ",features.shape)
         N, T, _ = features.shape
         x_in = self.preprocess(features)
         x_encoder = self.encoder(x_in)
@@ -103,22 +100,18 @@ class VQVae(nn.Module):
                                                 x_encoder.shape[-1])  # (NT, C)
         code_idx = self.quantizer.quantize(x_encoder)
         code_idx = code_idx.view(N, -1)
-
-        print("code idx: ",code_idx.size())
         # latent, dist
         return code_idx, None
 
     def decode(self, z: Tensor):
-
         x_d = self.quantizer.dequantize(z)
-        print("X_d 1: ",X_d)
+        print("ba3d el dequantizing fl decode: ",x_d.size())
         x_d = x_d.view(1, -1, self.code_dim).permute(0, 2, 1).contiguous()
-        print("x_d 2: ",x_d)
+        print("ba3d shwaiet 7arakat fl decode: ", x_d.size())
         # decoder
         x_decoder = self.decoder(x_d)
-        print("x_decoder: ",x_decoder)
+        print("ba3d el decode fe3lian fl decode: ",x_decoder.size())
         x_out = self.postprocess(x_decoder)
-        print("x_out: ",x_out)
         return x_out
 
 
