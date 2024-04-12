@@ -76,7 +76,7 @@ class VQVae(nn.Module):
 
         # Encode
         x_encoder = self.encoder(x_in)
-
+        print("x_encoder or code_idx: ", x_encoder)
         # quantization
         x_quantized, loss, perplexity = self.quantizer(x_encoder)
 
