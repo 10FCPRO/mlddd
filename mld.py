@@ -858,6 +858,7 @@ class MLD(BaseModel):
                 metrics_dicts = self.metrics_dict
 
             for metric in metrics_dicts:
+                print("$$$$$$$$$$$ metric: ",metric)
                 if metric == "TemosMetric":
                     phase = split if split != "val" else "eval"
                     if eval(f"self.cfg.{phase.upper()}.DATASETS")[0].lower(
