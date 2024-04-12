@@ -141,6 +141,9 @@ class MotionGPT(BaseModel):
         lengths = batch["length"]
         tasks = None
         if self.trainer.datamodule.is_mm:
+            print(1)
+            print()
+            print()
             texts = texts * self.hparams.cfg.METRIC.MM_NUM_REPEATS
             feats_ref = feats_ref.repeat_interleave(
                 self.hparams.cfg.METRIC.MM_NUM_REPEATS, dim=0)
@@ -151,12 +154,18 @@ class MotionGPT(BaseModel):
             tasks = [instructions["Text-to-Motion"]["caption"]] * len(texts)
 
         if self.hparams.condition == 'caption':
+            print(2)
+            print()
+            print()
             tasks = [{
                 'input': ['<Caption_Placeholder>'],
                 'output': ['']
             }] * len(texts)
 
         if self.hparams.cfg.DATASET.TASK_PATH:
+            print(3)
+            print()
+            print()
             instructions = pjoin(self.hparams.cfg.DATASET.TASK_PATH)
             instructions = json.load(open(instructions, 'r'))
             tasks = [instructions["Text-to-Motion"]["t2m"]] * len(texts)
@@ -178,9 +187,15 @@ class MotionGPT(BaseModel):
                                      out=None)
 
             if len(outputs[i]) > 1:
+                print(4)
+                print()
+                print()
                 motion = self.vae.decode(outputs[i])
                 print("motion size: ",motion.size())
             else:
+                print(5)
+                print()
+                print()
                 motion = torch.zeros_like(feats_ref[i:i + 1, ...])
 
             min_len[i] = min(motion.shape[1], lengths[i])
