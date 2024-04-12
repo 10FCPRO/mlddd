@@ -653,7 +653,7 @@ class MLD(BaseModel):
             z = self._diffusion_reverse(text_emb, lengths)
         elif self.stage in ['vae']:
             if self.vae_type in ["mld", "vposert", "actor"]:
-                print("motions size: ",motions)
+                print("motions size: ",motions.size())
                 z, dist_m = self.vae.encode(motions, lengths)
             else:
                 raise TypeError("Not supported vae type!")
