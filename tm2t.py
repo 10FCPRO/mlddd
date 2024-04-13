@@ -241,6 +241,7 @@ class TM2TMetrics(Metric):
         self.recmotion_embeddings.extend(cache)
 
         # T2m text encoder
+        print("selfffffffffffffffff textttttttttttttttt: ",self.text)
         if self.text:
             text_emb = self.t2m_textencoder(word_embs, pos_ohot, text_lengths)
             text_embeddings = torch.flatten(text_emb, start_dim=1).detach()
