@@ -25,7 +25,7 @@ class TM2TMetrics(Metric):
         self.R_size = R_size
         self.text = 'lm' in cfg.TRAIN.STAGE and cfg.model.params.task == 't2m'
         self.diversity_times = diversity_times
-
+        print("CFGGGGGG: ",cfg.model.params.task)
         self.add_state("count", default=torch.tensor(0), dist_reduce_fx="sum")
         self.add_state("count_seq",
                        default=torch.tensor(0),
