@@ -25,7 +25,6 @@ class TM2TMetrics(Metric):
         self.R_size = R_size
         self.text = 'lm' in cfg.TRAIN.STAGE and cfg.model.params.task == 't2m'
         self.diversity_times = diversity_times
-        print("CFGGGGGG: ",cfg.model.params.task)
         self.add_state("count", default=torch.tensor(0), dist_reduce_fx="sum")
         self.add_state("count_seq",
                        default=torch.tensor(0),
@@ -241,7 +240,6 @@ class TM2TMetrics(Metric):
         self.recmotion_embeddings.extend(cache)
 
         # T2m text encoder
-        print("selfffffffffffffffff textttttttttttttttt: ",self.text)
         if self.text:
             text_emb = self.t2m_textencoder(word_embs, pos_ohot, text_lengths)
             text_embeddings = torch.flatten(text_emb, start_dim=1).detach()
