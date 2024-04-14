@@ -57,7 +57,6 @@ class MLD(BaseModel):
 
         if self.vae_type != "no":
             self.vae = instantiate_from_config(cfg.model.motion_vae)
-        print(self.vae)
         # Don't train the motion encoder and decoder
         if self.stage == "diffusion":
             if self.vae_type in ["mld", "vposert","actor"]:
@@ -653,7 +652,6 @@ class MLD(BaseModel):
             z = self._diffusion_reverse(text_emb, lengths)
         elif self.stage in ['vae']:
             if self.vae_type in ["mld", "vposert", "actor"]:
-                print("motions size: ",motions.size())
                 z, dist_m = self.vae.encode(motions, lengths)
             else:
                 raise TypeError("Not supported vae type!")
@@ -663,9 +661,7 @@ class MLD(BaseModel):
 
         with torch.no_grad():
             if self.vae_type in ["mld", "vposert", "actor"]:
-                print("z size: ",z.size())
                 feats_rst = self.vae.decode(z, lengths)
-                print("##############feats size: ",feats_rst.size())
             elif self.vae_type == "no":
                 feats_rst = z.permute(1, 0, 2)
 
@@ -687,8 +683,6 @@ class MLD(BaseModel):
         align_idx = np.argsort(m_lens.data.tolist())[::-1].copy()
         motions = motions[align_idx]
         feats_rst = feats_rst[align_idx]
-        print(feats_rst)
-        print(feats_rst.size())
         m_lens = m_lens[align_idx]
         m_lens = torch.div(m_lens,
                            self.cfg.DATASET.HUMANML3D.UNIT_LEN,
@@ -858,7 +852,6 @@ class MLD(BaseModel):
                 metrics_dicts = self.metrics_dict
 
             for metric in metrics_dicts:
-                print("$$$$$$$$$$$ metric: ",metric)
                 if metric == "TemosMetric":
                     phase = split if split != "val" else "eval"
                     if eval(f"self.cfg.{phase.upper()}.DATASETS")[0].lower(
