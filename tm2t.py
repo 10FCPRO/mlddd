@@ -164,7 +164,7 @@ class TM2TMetrics(Metric):
     ):
         self.count += sum(lengths)
         self.count_seq += len(lengths)
-        print("TEXT EMbedding: ",text_embeddings.size())
+
         # [bs, nlatent*ndim] <= [bs, nlatent, ndim]
         text_embeddings = torch.flatten(text_embeddings, start_dim=1).detach()
         recmotion_embeddings = torch.flatten(recmotion_embeddings,
