@@ -137,7 +137,7 @@ class MLDLosses(Metric):
         return {loss: getattr(self, loss) / count for loss in self.losses}
 
     def _update_loss(self, loss: str, outputs, inputs):
-       print("self._lossfun: ",self._losses_func)
+        print("self._lossfun: ",self._losses_func)
         print("loss: ",loss)
         print("input type: ",type(inputs))
         print("output type: ",type(outputs))
