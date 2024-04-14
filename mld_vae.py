@@ -116,9 +116,7 @@ class MldVae(nn.Module):
         # Todo
         # remove and test this function
         print("Should Not enter here")
-        print("features size: ",features.size())
         z, dist = self.encode(features, lengths)
-        print("z size: ",z.size())
         feats_rst = self.decode(z, lengths)
         return feats_rst, z, dist
 
@@ -246,5 +244,4 @@ class MldVae(nn.Module):
         output[~mask.T] = 0
         # Pytorch Transformer: [Sequence, Batch size, ...]
         feats = output.permute(1, 0, 2)
-        print(feats.size())
         return feats
