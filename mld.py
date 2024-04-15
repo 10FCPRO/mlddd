@@ -141,10 +141,10 @@ class MLDLosses(Metric):
         print("loss: ",loss)
         print("input type: ",type(inputs))
         print("output type: ",type(outputs))
-        print("input shape: ",inputs.size())
-        print("output shape: ",outputs.size())
         print(inputs)
         print(outputs)
+        print("input shape: ",inputs.size())
+        print("output shape: ",outputs.size())
         # Update the loss
         val = self._losses_func[loss](outputs, inputs)
         getattr(self, loss).__iadd__(val.detach())
