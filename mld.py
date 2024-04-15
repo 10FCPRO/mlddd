@@ -143,8 +143,12 @@ class MLDLosses(Metric):
         print("output type: ",type(outputs))
         print(inputs)
         print(outputs)
-        print("input shape: ",inputs.size())
-        print("output shape: ",outputs.size())
+        if type(inputs) == torch.distributions.normal.Normal || type(outputs) == torch.distributions.normal.Normal:
+          print("norm loc: ",inputs.loc)
+          print("norm scale: ",inputs.scale)
+        else:
+          print("input shape: ",inputs.size())
+          print("output shape: ",outputs.size())
         # Update the loss
         val = self._losses_func[loss](outputs, inputs)
         getattr(self, loss).__iadd__(val.detach())
