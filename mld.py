@@ -143,7 +143,7 @@ class MLDLosses(Metric):
         print("output type: ",type(outputs))
         print(inputs)
         print(outputs)
-        if type(inputs) == torch.distributions.normal.Normal || type(outputs) == torch.distributions.normal.Normal:
+        if type(inputs) == torch.distributions.normal.Normal or type(outputs) == torch.distributions.normal.Normal:
           print("norm loc: ",inputs.loc)
           print("norm scale: ",inputs.scale)
         else:
