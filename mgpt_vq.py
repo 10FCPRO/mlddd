@@ -28,7 +28,7 @@ class VQVae(nn.Module):
                  **kwargs) -> None:
 
         super().__init__()
-
+    
         self.code_dim = code_dim
 
         self.encoder = Encoder(nfeats,
@@ -71,6 +71,7 @@ class VQVae(nn.Module):
         return x
 
     def forward(self, features: Tensor):
+        print("down t: ",down_t)
         # Preprocess
         print("motions input: ",features.size())
         x_in = self.preprocess(features)
@@ -182,4 +183,5 @@ class Decoder(nn.Module):
         self.model = nn.Sequential(*blocks)
 
     def forward(self, x):
+        print("decoder: downt: ",down_t)
         return self.model(x)
