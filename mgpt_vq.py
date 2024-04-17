@@ -71,7 +71,6 @@ class VQVae(nn.Module):
         return x
 
     def forward(self, features: Tensor):
-        print("down t: ",down_t)
         # Preprocess
         print("motions input: ",features.size())
         x_in = self.preprocess(features)
