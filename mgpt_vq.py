@@ -180,7 +180,7 @@ class Decoder(nn.Module):
         blocks.append(nn.ReLU())
         blocks.append(nn.Conv1d(width, input_emb_width, 3, 1, 1))
         self.model = nn.Sequential(*blocks)
+        print("decoder: downt: ",down_t)
 
     def forward(self, x):
-        print("decoder: downt: ",self.down_t)
         return self.model(x)
