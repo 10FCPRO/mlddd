@@ -182,5 +182,5 @@ class Decoder(nn.Module):
         self.model = nn.Sequential(*blocks)
 
     def forward(self, x):
-        print("decoder: downt: ",down_t)
+        print("decoder: downt: ",self.down_t)
         return self.model(x)
