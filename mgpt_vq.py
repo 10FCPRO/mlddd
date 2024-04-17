@@ -149,7 +149,8 @@ class Encoder(nn.Module):
         print("depth: ", depth)
         print("dilation_growth_rate: ", dilation_growth_rate)
         print("activation: ", activation)
-        print("norm: ", norm)    def forward(self, x):
+        print("norm: ", norm)
+    def forward(self, x):
         return self.model(x)
 
 
