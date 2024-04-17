@@ -141,8 +141,15 @@ class Encoder(nn.Module):
             blocks.append(block)
         blocks.append(nn.Conv1d(width, output_emb_width, 3, 1, 1))
         self.model = nn.Sequential(*blocks)
-
-    def forward(self, x):
+        print("input_emb_width: ", input_emb_width)
+        print("output_emb_width: ", output_emb_width)
+        print("down_t: ", down_t)
+        print("stride_t: ", stride_t)
+        print("width: ", width)
+        print("depth: ", depth)
+        print("dilation_growth_rate: ", dilation_growth_rate)
+        print("activation: ", activation)
+        print("norm: ", norm)    def forward(self, x):
         return self.model(x)
 
 
@@ -180,7 +187,15 @@ class Decoder(nn.Module):
         blocks.append(nn.ReLU())
         blocks.append(nn.Conv1d(width, input_emb_width, 3, 1, 1))
         self.model = nn.Sequential(*blocks)
-        print("decoder: downt: ",down_t)
+        print("input_emb_width: ", input_emb_width)
+        print("output_emb_width: ", output_emb_width)
+        print("down_t: ", down_t)
+        print("stride_t: ", stride_t)
+        print("width: ", width)
+        print("depth: ", depth)
+        print("dilation_growth_rate: ", dilation_growth_rate)
+        print("activation: ", activation)
+        print("norm: ", norm)
 
     def forward(self, x):
         return self.model(x)
