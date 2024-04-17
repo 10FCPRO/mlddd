@@ -72,17 +72,17 @@ class VQVae(nn.Module):
 
     def forward(self, features: Tensor):
         # Preprocess
-        print("motions input: ",features.size())
+        # print("motions input: ",features.size())
         x_in = self.preprocess(features)
         # Encode
         x_encoder = self.encoder(x_in)
         # quantization
         x_quantized, loss, perplexity = self.quantizer(x_encoder)
-        print("quantized: ",x_quantized.size())
+        # print("quantized: ",x_quantized.size())
         # decoder
         x_decoder = self.decoder(x_quantized)
         x_out = self.postprocess(x_decoder)
-        print("decoder: ",x_out.size())
+        # print("decoder: ",x_out.size())
         return x_out, loss, perplexity
 
     def encode(
