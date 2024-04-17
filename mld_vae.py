@@ -127,7 +127,7 @@ class MldVae(nn.Module):
     ) -> Union[Tensor, Distribution]:
         if lengths is None:
             lengths = [len(feature) for feature in features]
-        print("Features sizee in encoder: ",features.size())
+        # print("Features sizee in encoder: ",features.size())
         device = features.device
 
         bs, nframes, nfeats = features.shape
@@ -185,7 +185,7 @@ class MldVae(nn.Module):
     def decode(self, z: Tensor, lengths: List[int]):
         mask = lengths_to_mask(lengths, z.device)
         bs, nframes = mask.shape
-        print("Z sizee in decoder: ",z.size())
+        # print("Z sizee in decoder: ",z.size())
 
         queries = torch.zeros(nframes, bs, self.latent_dim, device=z.device)
 
@@ -245,5 +245,5 @@ class MldVae(nn.Module):
         output[~mask.T] = 0
         # Pytorch Transformer: [Sequence, Batch size, ...]
         feats = output.permute(1, 0, 2)
-        print("feaaaats sizee in decoder: ",feats.size())
+        # print("feaaaats sizee in decoder: ",feats.size())
         return feats
