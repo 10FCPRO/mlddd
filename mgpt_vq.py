@@ -82,8 +82,8 @@ class VQVae(nn.Module):
         print("quantized: ",x_quantized.size())
         # decoder
         x_decoder = self.decoder(x_quantized)
-        print("decoder: ",x_decoder.size())
         x_out = self.postprocess(x_decoder)
+        print("decoder: ",x_out.size())
         return x_out, loss, perplexity
 
     def encode(
