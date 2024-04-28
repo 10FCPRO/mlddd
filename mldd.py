@@ -527,6 +527,7 @@ class MLD(BaseModel):
         with torch.no_grad():
             if self.vae_type in ["mld", "vposert", "actor"]:
                 z, dist = self.vae.encode(feats_ref, lengths)
+                print("Z: ",z.size())
             elif self.vae_type == "no":
                 z = feats_ref.permute(1, 0, 2)
             else:
