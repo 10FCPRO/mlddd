@@ -431,7 +431,9 @@ class MLD(BaseModel):
         # our latent   [batch_size, n_token=1 or 5 or 10, latent_dim=256]
         # sd  latent   [batch_size, [n_token0=64,n_token1=64], latent_dim=4]
         # [n_token, batch_size, latent_dim] -> [batch_size, n_token, latent_dim]
+        print("Latent: ",latents.size())
         latents = latents.permute(1, 0, 2)
+        print("Latent after: ",latents.size())
 
         # Sample noise that we'll add to the latents
         # [batch_size, n_token, latent_dim]
