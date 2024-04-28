@@ -93,11 +93,16 @@ class VQVae(nn.Module):
         N, T, _ = features.shape
         x_in = self.preprocess(features)
         x_encoder = self.encoder(x_in)
+        print("x_encoder 1: ",x_encoder.size())
         x_encoder = self.postprocess(x_encoder)
+        print("x_encoder 2: ",x_encoder.size())
         x_encoder = x_encoder.contiguous().view(-1,
                                                 x_encoder.shape[-1])  # (NT, C)
+        print("x_encoder 3: ",x_encoder.size())
         code_idx = self.quantizer.quantize(x_encoder)
+        print("x_encoder 4: ",code_idx.size())
         code_idx = code_idx.view(N, -1)
+        print("x_encoder 1: ",code_idx.size())
         # latent, dist
         return code_idx, None
 
