@@ -84,7 +84,6 @@ class VQVae(nn.Module):
         # decoder
         print(x_quantized)
         x_decoder = self.decoder(x_quantized)
-        print(x_decoder)
         x_out = self.postprocess(x_decoder)
         # print("decoder: ",x_out.size())
         return x_out, loss, perplexity
