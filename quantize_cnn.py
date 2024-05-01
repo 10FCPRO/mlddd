@@ -89,6 +89,8 @@ class QuantizeEMAReset(nn.Module):
         return code_idx
 
     def dequantize(self, code_idx):
+        print("code_idx: ",code_idx.size())
+        print("self: ",self.codebook.size())
         x = F.embedding(code_idx, self.codebook)
         return x
 
