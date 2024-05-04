@@ -109,11 +109,16 @@ class VQVae(nn.Module):
         return code_idx, None
 
     def decode(self, z: Tensor):
+        print("Z Decoder: ",z.size())
         x_d = self.quantizer.dequantize(z)
+        print("x_d Decoder: ",x_d.size())
         x_d = x_d.view(1, -1, self.code_dim).permute(0, 2, 1).contiguous()
         # decoder
+        print("x_d 2 Decoder: ",x_d.size())
         x_decoder = self.decoder(x_d)
+        print("x_decoder: ",x_decoder.size())
         x_out = self.postprocess(x_decoder)
+        print("x_out: ",x_out.size())
         return x_out
 
 
