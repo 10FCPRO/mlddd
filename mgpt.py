@@ -77,7 +77,7 @@ class MotionGPT(BaseModel):
 
         for i in range(len(texts)):
             if task == "pred":
-                print(10)
+                print("here : ")
                 motion = self.vae.decode(
                     torch.cat((batch["motion"][i], outputs[i])))
                 print("Motion: ",motion.size())
