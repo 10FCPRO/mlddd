@@ -72,10 +72,13 @@ class VQVae(nn.Module):
 
     def forward(self, features: Tensor):
         # Preprocess
-        # print("motions input: ",features.size())
+        print("motions input: ",features.size())
         x_in = self.preprocess(features)
         # Encode
+        print("After preprocessing: ",x_in.size())
         x_encoder = self.encoder(x_in)
+        print("After encoding: ",x_encoder.size())
+        
         # quantization
         x_quantized, loss, perplexity = self.quantizer(x_encoder)
         print("Xquantized: ",x_quantized.size())
@@ -95,30 +98,30 @@ class VQVae(nn.Module):
         N, T, _ = features.shape
         x_in = self.preprocess(features)
         x_encoder = self.encoder(x_in)
-        print("x_encoder 1: ",x_encoder.size())
+        #print("x_encoder 1: ",x_encoder.size())
         x_encoder = self.postprocess(x_encoder)
-        print("x_encoder 2: ",x_encoder.size())
+        #print("x_encoder 2: ",x_encoder.size())
         x_encoder = x_encoder.contiguous().view(-1,
                                                 x_encoder.shape[-1])  # (NT, C)
-        print("x_encoder 3: ",x_encoder.size())
+        #print("x_encoder 3: ",x_encoder.size())
         code_idx = self.quantizer.quantize(x_encoder)
-        print("x_encoder 4: ",code_idx.size())
+        #print("x_encoder 4: ",code_idx.size())
         code_idx = code_idx.view(N, -1)
-        print("x_encoder 1: ",code_idx.size())
+        #print("x_encoder 1: ",code_idx.size())
         # latent, dist
         return code_idx, None
 
     def decode(self, z: Tensor):
-        print("Z Decoder: ",z.size())
+        #print("Z Decoder: ",z.size())
         x_d = self.quantizer.dequantize(z)
-        print("x_d Decoder: ",x_d.size())
+        #print("x_d Decoder: ",x_d.size())
         x_d = x_d.view(1, -1, self.code_dim).permute(0, 2, 1).contiguous()
         # decoder
-        print("x_d 2 Decoder: ",x_d.size())
+        #print("x_d 2 Decoder: ",x_d.size())
         x_decoder = self.decoder(x_d)
-        print("x_decoder: ",x_decoder.size())
+        #print("x_decoder: ",x_decoder.size())
         x_out = self.postprocess(x_decoder)
-        print("x_out: ",x_out.size())
+        #print("x_out: ",x_out.size())
         return x_out
 
 
