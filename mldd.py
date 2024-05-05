@@ -554,7 +554,6 @@ class MLD(BaseModel):
 
         # diffusion process return with noise and noise_pred
         n_set = self._diffusion_process(z, cond_emb, lengths)
-        print("n_set: ",n_set.size())
         return {**n_set}
 
     def test_diffusion_forward(self, batch, finetune_decoder=False):
