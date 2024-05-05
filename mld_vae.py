@@ -184,7 +184,7 @@ class MldVae(nn.Module):
         std = logvar.exp().pow(0.5)
         dist = torch.distributions.Normal(mu, std)
         latent = dist.rsample()
-        print("Latents: ",latent)
+        print("Latents: ",latent.size())
         return latent, dist
 
     def decode(self, z: Tensor, lengths: List[int]):
