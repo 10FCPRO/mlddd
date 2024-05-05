@@ -239,7 +239,9 @@ class MLD(BaseModel):
         with torch.no_grad():
             # ToDo change mcross actor to same api
             if self.vae_type in ["mld","actor"]:
+                print("Z: ",z.size())
                 feats_rst = self.vae.decode(z, lengths)
+                print("feats_rst: ",feats_rst.size())
             elif self.vae_type == "no":
                 feats_rst = z.permute(1, 0, 2)
 
@@ -264,6 +266,7 @@ class MLD(BaseModel):
                         f.write(str(line))
                         f.write('\n')
         joints = self.feats2joints(feats_rst.detach().cpu())
+        print("joins: ",joints.size())
         return remove_padding(joints, lengths)
 
     def gen_from_latent(self, batch):
