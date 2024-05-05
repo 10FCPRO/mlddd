@@ -133,7 +133,7 @@ class MldVae(nn.Module):
             lengths = [len(feature) for feature in features]
         # print("Features sizee in encoder: ",features.size())
         device = features.device
-        print("Entered encoding: ",feature.size())
+        print("Entered encoding: ",features.size())
         bs, nframes, nfeats = features.shape
         mask = lengths_to_mask(lengths, device)
 
