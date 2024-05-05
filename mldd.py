@@ -219,7 +219,7 @@ class MLD(BaseModel):
         lengths = batch["length"]
         if self.cfg.TEST.COUNT_TIME:
             self.starttime = time.time()
-
+        print("Stage : ",self.stage)
         if self.stage in ['diffusion', 'vae_diffusion']:
             # diffusion reverse
             if self.do_classifier_free_guidance:
@@ -231,6 +231,7 @@ class MLD(BaseModel):
                 texts = uncond_tokens
             text_emb = self.text_encoder(texts)
             z = self._diffusion_reverse(text_emb, lengths)
+            print("Z : ",z.size())
         elif self.stage in ['vae']:
             motions = batch['motion']
             z, dist_m = self.vae.encode(motions, lengths)
