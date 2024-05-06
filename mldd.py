@@ -219,7 +219,6 @@ class MLD(BaseModel):
         lengths = batch["length"]
         if self.cfg.TEST.COUNT_TIME:
             self.starttime = time.time()
-        print("Stage : ",self.stage)
         if self.stage in ['diffusion', 'vae_diffusion']:
             # diffusion reverse
             if self.do_classifier_free_guidance:
@@ -231,7 +230,6 @@ class MLD(BaseModel):
                 texts = uncond_tokens
             text_emb = self.text_encoder(texts)
             z = self._diffusion_reverse(text_emb, lengths)
-            print("Z : ",z.size())
         elif self.stage in ['vae']:
             motions = batch['motion']
             z, dist_m = self.vae.encode(motions, lengths)
@@ -239,9 +237,7 @@ class MLD(BaseModel):
         with torch.no_grad():
             # ToDo change mcross actor to same api
             if self.vae_type in ["mld","actor"]:
-                print("Z: ",z.size())
                 feats_rst = self.vae.decode(z, lengths)
-                print("feats_rst: ",feats_rst.size())
             elif self.vae_type == "no":
                 feats_rst = z.permute(1, 0, 2)
 
@@ -266,7 +262,6 @@ class MLD(BaseModel):
                         f.write(str(line))
                         f.write('\n')
         joints = self.feats2joints(feats_rst.detach().cpu())
-        print("joins: ",joints.size())
         return remove_padding(joints, lengths)
 
     def gen_from_latent(self, batch):
@@ -435,9 +430,7 @@ class MLD(BaseModel):
         # our latent   [batch_size, n_token=1 or 5 or 10, latent_dim=256]
         # sd  latent   [batch_size, [n_token0=64,n_token1=64], latent_dim=4]
         # [n_token, batch_size, latent_dim] -> [batch_size, n_token, latent_dim]
-        print("Latent: ",latents.size())
         latents = latents.permute(1, 0, 2)
-        print("Latent after: ",latents.size())
 
         # Sample noise that we'll add to the latents
         # [batch_size, n_token, latent_dim]
@@ -533,7 +526,6 @@ class MLD(BaseModel):
         with torch.no_grad():
             if self.vae_type in ["mld", "vposert", "actor"]:
                 z, dist = self.vae.encode(feats_ref, lengths)
-                print("Z: ",z.size())
             elif self.vae_type == "no":
                 z = feats_ref.permute(1, 0, 2)
             else:
