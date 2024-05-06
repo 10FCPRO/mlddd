@@ -293,7 +293,7 @@ class MLD(BaseModel):
     def _diffusion_reverse(self, encoder_hidden_states, lengths=None):
         # init latents
         bsz = encoder_hidden_states.shape[0]
-        prinit("bsz: ",bsz)
+        print("bsz: ",bsz)
         print("Encoder hidden states: ",encoder_hidden_states.shape)
         if self.do_classifier_free_guidance:
             bsz = bsz // 2
