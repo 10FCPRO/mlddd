@@ -67,9 +67,12 @@ class MotionGPT(BaseModel):
         lengths_ref = batch["length"]
 
         # Forward
+        print("\nTexts: ",texts)
+        print("\nlengths_ref: ",lengths_ref)
         # texts = ['Generate motion: ' + text for text in texts]
         outputs, output_texts = self.lm.generate_direct(texts, do_sample=True)
-
+        print("\nOutputs: ",outputs)
+        print("\nOutput_texts: ",output_texts)
         # Motion Decode
         feats_rst_lst = []
         lengths = []
