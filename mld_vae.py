@@ -115,13 +115,12 @@ class MldVae(nn.Module):
         # Temp
         # Todo
         # remove and test this function
-        print("Should Not enter here")
-        print("Entered Forward")
-        print("Features: ",features.size())
+        print("\n\n\nEntered Forward of mld_vae.py")
+        print("\nFeatures: ",features.size())
         z, dist = self.encode(features, lengths)
-        print("Z: ",z.size())
+        print("\nEncoded Z: ",z.size())
         feats_rst = self.decode(z, lengths)
-        print("feats: ",feats_rst.size())
+        print("\nFeatures after decoding: ",feats_rst.size())
         return feats_rst, z, dist
 
     def encode(
@@ -131,9 +130,8 @@ class MldVae(nn.Module):
     ) -> Union[Tensor, Distribution]:
         if lengths is None:
             lengths = [len(feature) for feature in features]
-        # print("Features sizee in encoder: ",features.size())
         device = features.device
-        print("Entered encoding: ",features.size())
+        print("\n\nEntered encoding")
         bs, nframes, nfeats = features.shape
         mask = lengths_to_mask(lengths, device)
 
@@ -184,14 +182,12 @@ class MldVae(nn.Module):
         std = logvar.exp().pow(0.5)
         dist = torch.distributions.Normal(mu, std)
         latent = dist.rsample()
-        print("Latents: ",latent.size())
         return latent, dist
 
     def decode(self, z: Tensor, lengths: List[int]):
         mask = lengths_to_mask(lengths, z.device)
         bs, nframes = mask.shape
-        # print("Z sizee in decoder: ",z.size())
-        print("entered decoding: ",z.size())
+        print("\n\nEntered decoding")
         queries = torch.zeros(nframes, bs, self.latent_dim, device=z.device)
 
         # todo
@@ -250,6 +246,4 @@ class MldVae(nn.Module):
         output[~mask.T] = 0
         # Pytorch Transformer: [Sequence, Batch size, ...]
         feats = output.permute(1, 0, 2)
-        # print("feaaaats sizee in decoder: ",feats.size())
-        print("decoding feats: ",feats.size())
         return feats
