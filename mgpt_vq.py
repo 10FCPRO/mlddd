@@ -72,19 +72,21 @@ class VQVae(nn.Module):
 
     def forward(self, features: Tensor):
         print("\n\nEntered Forward of mgpt_vq.py")
+        print("Features: ",features.size())
         # Preprocess
         x_in = self.preprocess(features)
-        
+        print("\nFeatures preprocessed: ",x_in.size())
         # Encode
         x_encoder = self.encoder(x_in)
-        
+        print("\nEncoded: ",x_encoder.size())
         # quantization
         x_quantized, loss, perplexity = self.quantizer(x_encoder)
-        
+        print("\nQuantized: ",x_quantized.size())
         # decoder
         x_decoder = self.decoder(x_quantized)
-        
+        print("\nDecoded: ",x_decoder.size())
         x_out = self.postprocess(x_decoder)
+        print("Output postprocessed: ",x_out.size())
         return x_out, loss, perplexity
 
     def encode(
