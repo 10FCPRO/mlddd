@@ -264,6 +264,7 @@ class MLD(BaseModel):
                         f.write(str(line))
                         f.write('\n')
         joints = self.feats2joints(feats_rst.detach().cpu())
+        print("Joints: ",joints.size())
         return remove_padding(joints, lengths)
 
     def gen_from_latent(self, batch):
