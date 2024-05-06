@@ -83,6 +83,7 @@ class MotionGPT(BaseModel):
                 motion = self.vae.decode(
                     torch.cat((batch["motion"][i], outputs[i])))
             elif task in ["t2m", "m2t", "inbetween"]:
+                print("outputs i: ",outputs[i])
                 motion = self.vae.decode(outputs[i])
                 # motion = self.datamodule.denormalize(motion)
                 lengths.append(motion.shape[1])
