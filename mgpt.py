@@ -112,7 +112,8 @@ class MotionGPT(BaseModel):
 
         # Recover joints for evaluation
         joints_rst = self.feats2joints(feats_rst)
-
+        print("Joints: ",joints_rst.size())
+        print("Joints: ",joints_rst[0].size())
         # return set
         outputs = {
             "texts": output_texts,
