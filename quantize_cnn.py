@@ -81,7 +81,6 @@ class QuantizeEMAReset(nn.Module):
 
     def quantize(self, x):
         # Calculate latent code x_l
-        print(self.codebook)
         k_w = self.codebook.t()
         distance = torch.sum(x ** 2, dim=-1, keepdim=True) - 2 * torch.matmul(x, k_w) + torch.sum(k_w ** 2, dim=0,
                                                                                             keepdim=True)  # (N * L, b)
@@ -89,8 +88,6 @@ class QuantizeEMAReset(nn.Module):
         return code_idx
 
     def dequantize(self, code_idx):
-        print("code_idx: ",code_idx.size())
-        print("self: ",self.codebook.size())
         x = F.embedding(code_idx, self.codebook)
         return x
 
