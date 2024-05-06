@@ -71,6 +71,7 @@ class VQVae(nn.Module):
         return x
 
     def forward(self, features: Tensor):
+        print("\n\nEntered Forward of mgpt_vq.py")
         # Preprocess
         x_in = self.preprocess(features)
         
@@ -90,6 +91,7 @@ class VQVae(nn.Module):
         self,
         features: Tensor,
     ) -> Union[Tensor, Distribution]:
+        print("\n\nEntered Encode Function in mgpt_vq.py")
         N, T, _ = features.shape
         x_in = self.preprocess(features)
         
@@ -108,6 +110,7 @@ class VQVae(nn.Module):
         return code_idx, None
 
     def decode(self, z: Tensor):
+        print("\n\nEntered Decode Function in mgpt_vq.py")
         x_d = self.quantizer.dequantize(z)
 
         x_d = x_d.view(1, -1, self.code_dim).permute(0, 2, 1).contiguous()
