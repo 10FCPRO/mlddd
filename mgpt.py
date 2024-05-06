@@ -77,10 +77,8 @@ class MotionGPT(BaseModel):
 
         for i in range(len(texts)):
             if task == "pred":
-                print("here : ")
                 motion = self.vae.decode(
                     torch.cat((batch["motion"][i], outputs[i])))
-                print("Motion: ",motion.size())
             elif task in ["t2m", "m2t", "inbetween"]:
                 motion = self.vae.decode(outputs[i])
                 # motion = self.datamodule.denormalize(motion)
