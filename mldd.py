@@ -474,6 +474,7 @@ class MLD(BaseModel):
         return n_set
 
     def train_vae_forward(self, batch):
+        print("/n/n/nEntered Train Vae Forward")
         feats_ref = batch["motion"]
         lengths = batch["length"]
 
@@ -520,6 +521,7 @@ class MLD(BaseModel):
         return rs_set
 
     def train_diffusion_forward(self, batch):
+        print("/n/n/nEntered Train Diffusion Forward")
         feats_ref = batch["motion"]
         lengths = batch["length"]
         # motion encode
@@ -616,6 +618,7 @@ class MLD(BaseModel):
         return rs_set
 
     def t2m_eval(self, batch):
+        print("/n/n/nEntered t2m_eval")
         texts = batch["text"]
         motions = batch["motion"].detach().clone()
         lengths = batch["length"]
@@ -835,7 +838,7 @@ class MLD(BaseModel):
             if loss is None:
                 raise ValueError(
                     "Loss is None, this happend with torchmetrics > 0.7")
-
+        print("\n\n\n\nSplit is: ",split)
         # Compute the metrics - currently evaluate results from text to motion
         if split in ["val", "test"]:
             if self.condition in ['text', 'text_uncond']:
