@@ -229,6 +229,7 @@ class MLD(BaseModel):
                     uncond_tokens.extend(uncond_tokens)
                 texts = uncond_tokens
             text_emb = self.text_encoder(texts)
+            print("Text emd: ",text_emb.size())
             z = self._diffusion_reverse(text_emb, lengths)
             print("Z: ",z.size())
         elif self.stage in ['vae']:
