@@ -430,7 +430,10 @@ class MLD(BaseModel):
         # our latent   [batch_size, n_token=1 or 5 or 10, latent_dim=256]
         # sd  latent   [batch_size, [n_token0=64,n_token1=64], latent_dim=4]
         # [n_token, batch_size, latent_dim] -> [batch_size, n_token, latent_dim]
+        print("\n\n\n\nIn Diffusion Process")
+        print("Latents Before: ",latents.size())
         latents = latents.permute(1, 0, 2)
+        print("Latents After: ",latents.size())
 
         # Sample noise that we'll add to the latents
         # [batch_size, n_token, latent_dim]
@@ -471,6 +474,8 @@ class MLD(BaseModel):
         if not self.predict_epsilon:
             n_set["pred"] = noise_pred
             n_set["latent"] = latents
+        print("At the end Latent: ",latents.size())
+        print("Noise Pred: ",noise_pred.size())
         return n_set
 
     def train_vae_forward(self, batch):
