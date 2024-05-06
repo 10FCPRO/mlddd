@@ -132,6 +132,7 @@ class MldVae(nn.Module):
             lengths = [len(feature) for feature in features]
         device = features.device
         print("\n\nEntered encoding")
+        print("\nFeatures: ",features.size())
         bs, nframes, nfeats = features.shape
         mask = lengths_to_mask(lengths, device)
 
@@ -182,12 +183,14 @@ class MldVae(nn.Module):
         std = logvar.exp().pow(0.5)
         dist = torch.distributions.Normal(mu, std)
         latent = dist.rsample()
+        print("\nLatents: ",latent.size())
         return latent, dist
 
     def decode(self, z: Tensor, lengths: List[int]):
         mask = lengths_to_mask(lengths, z.device)
         bs, nframes = mask.shape
         print("\n\nEntered decoding")
+        print("\nZ: ",z.size())
         queries = torch.zeros(nframes, bs, self.latent_dim, device=z.device)
 
         # todo
@@ -246,4 +249,5 @@ class MldVae(nn.Module):
         output[~mask.T] = 0
         # Pytorch Transformer: [Sequence, Batch size, ...]
         feats = output.permute(1, 0, 2)
+        print("Features output: ",feats.size())
         return feats
