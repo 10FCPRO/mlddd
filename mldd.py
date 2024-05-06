@@ -230,6 +230,7 @@ class MLD(BaseModel):
                 texts = uncond_tokens
             text_emb = self.text_encoder(texts)
             z = self._diffusion_reverse(text_emb, lengths)
+            print("Z: ",z.size())
         elif self.stage in ['vae']:
             motions = batch['motion']
             z, dist_m = self.vae.encode(motions, lengths)
@@ -238,6 +239,7 @@ class MLD(BaseModel):
             # ToDo change mcross actor to same api
             if self.vae_type in ["mld","actor"]:
                 feats_rst = self.vae.decode(z, lengths)
+                print("FEATS: ",feats_rst.size())
             elif self.vae_type == "no":
                 feats_rst = z.permute(1, 0, 2)
 
