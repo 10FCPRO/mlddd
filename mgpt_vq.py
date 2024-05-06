@@ -112,15 +112,18 @@ class VQVae(nn.Module):
         return code_idx, None
 
     def decode(self, z: Tensor):
-        print("\n\nEntered Decode Function in mgpt_vq.py")
+        print("\n\n\n\n\nEntered Decode Function in mgpt_vq.py")
+        print("\nZ: ",z.size())
         x_d = self.quantizer.dequantize(z)
-
+        print("\nDequantized: ",x_d.size())
         x_d = x_d.view(1, -1, self.code_dim).permute(0, 2, 1).contiguous()
-        
+        print("\nSome stuff: ",x_d.size())
         # decoder
         x_decoder = self.decoder(x_d)
-
+        print("\nDecoded: ",x_decoder.size())
         x_out = self.postprocess(x_decoder)
+        print("\nOutput after postprocess: ",x_out.size())
+        print("/////////////////////////////////")
 
         return x_out
 
