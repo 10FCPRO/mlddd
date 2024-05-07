@@ -298,6 +298,7 @@ class MLD(BaseModel):
         print("Encoder hidden states: ",encoder_hidden_states.shape)
         if self.do_classifier_free_guidance:
             bsz = bsz // 2
+        print("Self Vae Type: ",self.vae_type)
         if self.vae_type == "no":
             assert lengths is not None, "no vae (diffusion only) need lengths for diffusion"
             latents = torch.randn(
@@ -306,6 +307,7 @@ class MLD(BaseModel):
                 dtype=torch.float,
             )
         else:
+            print("Latent dim: ",self.latent_dim[-1])
             latents = torch.randn(
                 (bsz, self.latent_dim[0], self.latent_dim[-1]),
                 device=encoder_hidden_states.device,
