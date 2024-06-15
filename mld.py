@@ -30,7 +30,7 @@ class MLD(BaseModel):
     Stage 2 diffusion
     """
 
-    def __init__(self, cfg, datamodule, **kwargs):
+    def __init__(self, cfg, lm, motion_vae,codebook_size = 512,datamodule, **kwargs):
         super().__init__()
 
         self.cfg = cfg
