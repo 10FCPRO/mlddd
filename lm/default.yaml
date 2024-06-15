@@ -1,4 +1,4 @@
-target: mGPT.archs.mgpt_lm.MLM
+target: mld.models.architectures.mgpt_lm.MLM
 params:
   model_type: t5
   model_path: ./deps/flan-t5-base
