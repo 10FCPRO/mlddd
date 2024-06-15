@@ -88,26 +88,26 @@ class VQVae(nn.Module):
         x_out = self.postprocess(x_decoder)
         print("Output postprocessed: ",x_out.size())
         return x_out, loss, perplexity
-
     def encode(
         self,
         features: Tensor,
     ) -> Union[Tensor, Distribution]:
-        print("\n\nEntered Encode Function in mgpt_vq.py")
+        print("\n\n\n\nEntered Encodeeerrrr")
+        print("features: ",features.size())
         N, T, _ = features.shape
         x_in = self.preprocess(features)
-        
+        print("x_in (after preprocess): ",x_in.size())
         x_encoder = self.encoder(x_in)
-
+        print("X encoder1 (after encoder): ",x_encoder.size())
         x_encoder = self.postprocess(x_encoder)
-
+        print("x_encoder2 (after post process): ",x_encoder.size())
         x_encoder = x_encoder.contiguous().view(-1,
                                                 x_encoder.shape[-1])  # (NT, C)
-
+        print("x_encoder (after 7arakat): ",x_encoder.size())
         code_idx = self.quantizer.quantize(x_encoder)
-
+        print("code idx (after quantize): ",code_idx.size())
         code_idx = code_idx.view(N, -1)
-
+        print("code idx (after 7arakat): ",code_idx.size())
         # latent, dist
         return code_idx, None
 
