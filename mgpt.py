@@ -42,7 +42,7 @@ class MotionGPT(BaseModel):
 
         # Instantiate motion-language model
         print("HEREEEEEEEEEEEEEE ",lm)
-        print("TYZZZZZZZZZZZZZ: ",cfg.model.params.codebook_size)
+        print("TYZZZZZZZZZZZZZ: ",cfg)
         self.lm = instantiate_from_config(lm)
 
         # Freeze the motion tokenizer for lm training
