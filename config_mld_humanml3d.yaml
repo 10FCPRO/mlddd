@@ -10,7 +10,7 @@ NAME: 1222_PELearn_Diff_Latent1_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01
 # 3. will not use `wandb logger`
 DEBUG: False
 # Devices. Optional: “cpu”, “gpu”
-ACCELERATOR: 'gpu'
+ACCELERATOR: "gpu"
 # Index of GPUs eg. [0] or [0,1,2,3]
 DEVICE: [0]
 
@@ -21,7 +21,7 @@ TRAIN:
   # Model stage. Optional: "vae", "diffusion"
   STAGE: diffusion
   # Training dataset name
-  DATASETS: ['humanml3d']
+  DATASETS: ["humanml3d"]
   # Number of dataloader workers
   NUM_WORKERS: 8
   # Size of batches
@@ -29,8 +29,9 @@ TRAIN:
   # Total epochs for training
   END_EPOCH: 2000
 
-  RESUME: '' # Resume training from this path
-  PRETRAINED_VAE: '' # vae model path
+  RESUME: "" # Resume training from this path
+  PRETRAINED_VAE: "/home/mohamed/Desktop/motion-latent-diffusion/experiments/mld/1222_PELearn_VAE_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01/checkpoints/epoch=5999.ckpt"
+  # vae model path
   OPTIM:
     TYPE: AdamW # Optimizer type
     LR: 1e-4 # Learning rate
@@ -44,7 +45,7 @@ TRAIN:
 # The following are validation settings
 #####################################
 EVAL:
-  DATASETS: ['humanml3d'] # Evaluating datasets
+  DATASETS: ["humanml3d"] # Evaluating datasets
   BATCH_SIZE: 32 # Evaluating Batch size
   SPLIT: test
 
@@ -52,8 +53,9 @@ EVAL:
 # The following are testing settings
 #####################################
 TEST:
-  CHECKPOINTS: /kaggle/working/motion-latent-diffusion/checkpoints/mld_humanml3d_checkpoint/1222_mld_humanml3d_FID041.ckpt # Pretrained model path
-  DATASETS: ['humanml3d'] # training datasets
+  #CHECKPOINTS: ./models/mld_humanml3d_checkpoint/1222_mld_humanml3d_FID041.ckpt # Pretrained model path
+  CHECKPOINTS: "/home/mohamed/Desktop/motion-latent-diffusion/experiments/mld/1222_PELearn_Diff_Latent1_MEncDec49_MdiffEnc49_bs64_clip_uncond75_01/checkpoints/epoch=799.ckpt"
+  DATASETS: ["humanml3d"] # training datasets
   SPLIT: test
   BATCH_SIZE: 1 # training Batch size
   MEAN: False
@@ -64,13 +66,13 @@ TEST:
 # The following are basic datasets settings
 #####################################
 DATASET:
-  JOINT_TYPE: 'humanml3d' # join type
+  JOINT_TYPE: "humanml3d" # join type
 
 #####################################
 # The following are metric settings
 #####################################
 METRIC:
-  TYPE: ['TemosMetric', 'TM2TMetrics']
+  TYPE: ["TemosMetric", "TM2TMetrics"]
 
 #####################################
 # The following are training losses settings
@@ -92,8 +94,9 @@ LOSS:
 model:
   vae: true # whether vae model
   model_type: mld # model type
-  condition: 'text'
-  latent_dim: [1, 256] # latent dimension
+  condition: "text"
+  lm: ${lm.default}
+  latent_dim: [1, 512] # latent dimension
   ff_size: 1024 #
   num_layers: 9 # number of layers
   num_head: 4 # number of head layers
