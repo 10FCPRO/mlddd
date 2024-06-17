@@ -173,6 +173,9 @@ def parse_args(phase="train"):
         cfg_exp = get_module_config(cfg_exp, cfg_assets.CONFIG_FOLDER)
     cfg = OmegaConf.merge(cfg_exp, cfg_assets)
 
+    print("CFG 2: ",params)
+    print("\n\n\n\n\n\n\n\n\n\n")
+    
     print("CFG 2: ",cfg_assets)
     print("\n\n\n\n\n\n\n\n\n\n")
 
