@@ -90,7 +90,7 @@ def parse_args(phase="train"):
     group.add_argument(
         "--cfg",
         type=str,
-        required=Falmse,
+        required=False,
         default=cfg_defualt,
         help="config file",
     )
