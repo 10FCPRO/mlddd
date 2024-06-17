@@ -16,6 +16,7 @@ def main():
 
     # Logger
     logger = create_logger(cfg, phase="train")  # create logger
+    print("HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE: ",cfg.lm)
     logger.info(OmegaConf.to_yaml(cfg))  # print config file
 
     # Seed
