@@ -85,7 +85,7 @@ def parse_args(phase="train"):
         cfg_defualt = "./configs/render.yaml"
     elif phase == "webui":
         cfg_defualt = "./configs/webui.yaml"
-    print("CFG 1: ",cfg_default)
+    print("CFG 1: ",cfg.defualt)
     print("\n\n\n\n\n\n\n\n\n\n")
     group.add_argument(
         "--cfg",
