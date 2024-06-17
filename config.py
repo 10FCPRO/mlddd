@@ -176,6 +176,12 @@ def parse_args(phase="train"):
     print("CFG 2: ",cfg_assets)
     print("\n\n\n\n\n\n\n\n\n\n")
 
+    print("CFG 2: ",cfg_base)
+    print("\n\n\n\n\n\n\n\n\n\n")
+
+    print("CFG 2: ",cfg_exp)
+    print("\n\n\n\n\n\n\n\n\n\n")
+
     # Update config with arguments
     if phase in ["train", "test"]:
         cfg.TRAIN.BATCH_SIZE = params.batch_size if params.batch_size else cfg.TRAIN.BATCH_SIZE
