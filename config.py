@@ -2,7 +2,8 @@ import importlib
 from argparse import ArgumentParser
 from omegaconf import OmegaConf
 import os
-
+from os.path import join as pjoin
+import glob
 
 def get_module_config(cfg_model, path="modules"):
     files = os.listdir(f'./configs/{path}/')
@@ -11,7 +12,20 @@ def get_module_config(cfg_model, path="modules"):
             with open(f'./configs/{path}/' + file, 'r') as f:
                 cfg_model.merge_with(OmegaConf.load(f))
     return cfg_model
+    
+def get_module_config2(cfg, filepath="./configs"):
+    """
+    Load yaml config files from subfolders
+    """
 
+    yamls = glob.glob(pjoin(filepath, '*', '*.yaml'))
+    yamls = [y.replace(filepath, '') for y in yamls]
+    for yaml in yamls:
+        nodes = yaml.replace('.yaml', '').replace(os.sep, '.')
+        nodes = nodes[1:] if nodes[0] == '.' else nodes
+        OmegaConf.update(cfg, nodes, OmegaConf.load('./configs' + yaml))
+
+    return cfg
 
 def get_obj_from_str(string, reload=False):
     module, cls = string.rsplit(".", 1)
