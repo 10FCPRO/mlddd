@@ -171,10 +171,11 @@ def parse_args(phase="train"):
     # params = {key: val for key, val in vars(opt).items() if val is not None}
 
     # update config from files
+    cfg_assets = OmegaConf.load(params.cfg_assets)
     cfg_base = OmegaConf.load('./configs/base.yaml')
     cfg_exp = OmegaConf.merge(cfg_base, OmegaConf.load(params.cfg))
+    cfg_exp = get_module_config2(cfg_exp, "configs")
     cfg_model = get_module_config(cfg_exp.model, cfg_exp.model.target)
-    cfg_assets = OmegaConf.load(params.cfg_assets)
     cfg = OmegaConf.merge(cfg_exp, cfg_model, cfg_assets)
 
     if phase in ["train", "test"]:
