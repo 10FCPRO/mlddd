@@ -25,6 +25,8 @@ def get_obj_from_str(string, reload=False):
     """
     Get object from string
     """
+    print("RELOAD: ",reload)
+    print("String: ",string)
 
     module, cls = string.rsplit(".", 1)
     if reload:
