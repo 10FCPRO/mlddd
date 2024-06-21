@@ -158,6 +158,7 @@ def main():
         logger.info("Loading checkpoints from {}".format(cfg.TEST.CHECKPOINTS))
         state_dict = torch.load(cfg.TEST.CHECKPOINTS,
                                 map_location="cpu")["state_dict"]
+        print(state_dict)
         model.load_state_dict(state_dict)
     else:
         logger.warning(
