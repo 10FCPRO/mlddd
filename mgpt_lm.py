@@ -283,7 +283,7 @@ class MLM(nn.Module):
 
         outputs_string = self.tokenizer.batch_decode(outputs,
                                                      skip_special_tokens=True)
-        print("STRING: ",outputs_string.size())
+        print("STRING: ",outputs_string[0])
         outputs_tokens, cleaned_text = self.motion_string_to_token(
             outputs_string)
 
