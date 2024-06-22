@@ -160,6 +160,10 @@ def main():
         print("\n\n\n\n\n\n\n\n\n")
         print("cfg.TEST.CHECKPOINTS: ",cfg.TEST.CHECKPOINTS)
         print("\n\n\n\n\n\n\n\n\n")
+
+        state_dict_dict = torch.load(cfg.TEST.CHECKPOINTS,
+                                map_location="cpu")
+        print(type(state_dict_dict))
         
         state_dict = torch.load(cfg.TEST.CHECKPOINTS,
                                 map_location="cpu")["state_dict"]
