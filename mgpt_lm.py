@@ -69,6 +69,7 @@ class MLM(nn.Module):
             [f'<motion_id_{i}>' for i in range(self.m_codebook_size + 3)])
         print("TOOOOOOOOKEN: ",new_token_type)
         if new_token_type == "insert":
+            print("LALALAL:::: ",len(self.tokenizer))
             self.language_model.resize_token_embeddings(len(self.tokenizer))
         elif new_token_type == "mlp":
             shared = NewTokenEmb(self.language_model.shared,
