@@ -262,6 +262,7 @@ class MLM(nn.Module):
         source_attention_mask = source_encoding.attention_mask.to(self.device)
 
         if self.lm_type == 'encdec':
+            print(max_length,num_beams,do_sample,bad_words_ids)
             outputs = self.language_model.generate(
                 source_input_ids,
                 max_length=max_length,
