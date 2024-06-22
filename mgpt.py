@@ -41,8 +41,6 @@ class MotionGPT(BaseModel):
             self.vae = instantiate_from_config(motion_vae)
 
         # Instantiate motion-language model
-        print("HEREEEEEEEEEEEEEE ",lm)
-        print("TYZZZZZZZZZZZZZ: ",cfg.model.params.lm)
         self.lm = instantiate_from_config(lm)
 
         # Freeze the motion tokenizer for lm training
@@ -71,8 +69,10 @@ class MotionGPT(BaseModel):
         # Forward
         # texts = ['Generate motion: ' + text for text in texts]
         outputs, output_texts = self.lm.generate_direct(texts, do_sample=True)
-        print("\nOutputs: ",len(outputs))
-        print("outputs: ",outputs[1].size())
+        print("\n\n\n\n\n\n\n\n")
+        print("KOKOELDA#IF")
+        print(outputs)
+        print(outputs[0].size())
         # Motion Decode
         feats_rst_lst = []
         lengths = []
