@@ -243,7 +243,7 @@ class MLM(nn.Module):
         if self.lm_type == 'dec':
             texts = [text + " \n " for text in texts]
         print("self.max_Length: ",self.max_length)
-        print("Max length: ",max_lengths)
+        print("Max length: ",max_length)
         print("self.device: ",self.device)
         print("num_beams: ",num_beams)
         print("do_sample: ",do_sample)
