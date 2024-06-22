@@ -268,6 +268,7 @@ class MLM(nn.Module):
                 do_sample=do_sample,
                 bad_words_ids=bad_words_ids,
             )
+            print("OUTPUTS LALAL: ",outputs.size())
         elif self.lm_type == 'dec':
             outputs = self.language_model.generate(
                 input_ids=source_input_ids,
@@ -276,7 +277,7 @@ class MLM(nn.Module):
                 do_sample=do_sample,
                 max_new_tokens=max_length)
             self.tokenizer.padding_side = 'left'
-
+        
         outputs_string = self.tokenizer.batch_decode(outputs,
                                                      skip_special_tokens=True)
 
