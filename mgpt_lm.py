@@ -64,6 +64,7 @@ class MLM(nn.Module):
             self.tokenizer.pad_token = self.tokenizer.eos_token
 
         # Add motion tokens
+        print("CODEBOOK: ",self.m_codebook_size)
         self.tokenizer.add_tokens(
             [f'<motion_id_{i}>' for i in range(self.m_codebook_size + 3)])
         print("TOOOOOOOOKEN: ",new_token_type)
