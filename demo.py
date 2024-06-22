@@ -164,6 +164,7 @@ def main():
         state_dict_dict = torch.load(cfg.TEST.CHECKPOINTS,
                                 map_location="cpu")
         print(type(state_dict_dict))
+        print("Keys in regular_dict:", list(state_dict_dict.keys()))
         
         state_dict = torch.load(cfg.TEST.CHECKPOINTS,
                                 map_location="cpu")["state_dict"]
