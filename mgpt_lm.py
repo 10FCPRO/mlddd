@@ -79,7 +79,7 @@ class MLM(nn.Module):
             self.language_model.resize_token_embeddings(len(self.tokenizer))
             self.language_model.shared = shared
             # self.language_model.lm_head = lm_head
-
+        print("LORA: ",lora)
         # Lora
         if lora:
             from peft import LoraConfig, TaskType, get_peft_model, get_peft_model_state_dict
@@ -256,7 +256,7 @@ class MLM(nn.Module):
                                          return_attention_mask=True,
                                          add_special_tokens=True,
                                          return_tensors="pt")
-
+        print("Source encoding: ",source_encoding)
         source_input_ids = source_encoding.input_ids.to(self.device)
         source_attention_mask = source_encoding.attention_mask.to(self.device)
 
