@@ -168,7 +168,7 @@ def main():
         
         state_dict = torch.load(cfg.TEST.CHECKPOINTS,
                                 map_location="cpu")["state_dict"]
-        print(type(state_dict))
+        print("Keys in regular_dict:", list(state_dict.keys()))
         model.load_state_dict(state_dict)
     else:
         logger.warning(
