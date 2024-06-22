@@ -95,6 +95,8 @@ class MLM(nn.Module):
 
     def forward(self, texts: List[str], motion_tokens: Tensor,
                 lengths: List[int], tasks: dict):
+
+        print("A7OOOOOOOOOOOO")
         if self.lm_type == 'encdec':
             return self.forward_encdec(texts, motion_tokens, lengths, tasks)
         elif self.lm_type == 'dec':
