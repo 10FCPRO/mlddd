@@ -266,6 +266,7 @@ class MLM(nn.Module):
         print("\n\n\nlm type: ",self.lm_type)
 
         if self.lm_type == 'encdec':
+            print("KAKAOKSAOKDAOSKDAKD: ",max_length)
             outputs = self.language_model.generate(
                 source_input_ids,
                 max_length=max_length,
