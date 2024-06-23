@@ -265,24 +265,30 @@ class MLM(nn.Module):
         source_attention_mask = source_encoding.attention_mask.to(self.device)
         print("\n\n\nlm type: ",self.lm_type)
 
-        if self.lm_type == 'encdec':
-            print("KAKAOKSAOKDAOSKDAKD: ",max_length)
-            outputs = self.language_model.generate(
-                source_input_ids,
-                max_length=max_length,
-                num_beams=num_beams,
-                do_sample=do_sample,
-                bad_words_ids=bad_words_ids,
-            )
-        elif self.lm_type == 'dec':
-            outputs = self.language_model.generate(
-                input_ids=source_input_ids,
-                attention_mask=source_attention_mask,
-                pad_token_id=self.tokenizer.pad_token_id,
-                do_sample=do_sample,
-                max_new_tokens=max_length)
-            self.tokenizer.padding_side = 'left'
-            
+        # if self.lm_type == 'encdec':
+        #     print("KAKAOKSAOKDAOSKDAKD: ",max_length)
+        #     outputs = self.language_model.generate(
+        #         source_input_ids,
+        #         max_length=max_length,
+        #         num_beams=num_beams,
+        #         do_sample=do_sample,
+        #         bad_words_ids=bad_words_ids,
+        #     )
+        # elif self.lm_type == 'dec':
+        #     outputs = self.language_model.generate(
+        #         input_ids=source_input_ids,
+        #         attention_mask=source_attention_mask,
+        #         pad_token_id=self.tokenizer.pad_token_id,
+        #         do_sample=do_sample,
+        #         max_new_tokens=max_length)
+        #     self.tokenizer.padding_side = 'left'
+        outputs = self.language_model.generate(
+            source_input_ids,
+            max_length=256,
+            num_beams=1,
+            do_sample=True,
+            bad_words_ids=None,
+        )
         print("OUTPUTS LALAL: ",outputs.size())
         print(outputs)
         
