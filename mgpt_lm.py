@@ -283,7 +283,8 @@ class MLM(nn.Module):
             self.tokenizer.padding_side = 'left'
             
         print("OUTPUTS LALAL: ",outputs.size())
-
+        print(outputs)
+        
         outputs_string = self.tokenizer.batch_decode(outputs,
                                                      skip_special_tokens=True)
         
