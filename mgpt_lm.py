@@ -252,13 +252,21 @@ class MLM(nn.Module):
         print("do_sample: ",do_sample)
         print("bad_words_ids: ",bad_words_ids)
 
+        # source_encoding = self.tokenizer(texts,
+        #                                  padding='max_length',
+        #                                  max_length=self.max_length,
+        #                                  truncation=True,
+        #                                  return_attention_mask=True,
+        #                                  add_special_tokens=True,
+        #                                  return_tensors="pt")
         source_encoding = self.tokenizer(texts,
-                                         padding='max_length',
-                                         max_length=self.max_length,
-                                         truncation=True,
-                                         return_attention_mask=True,
-                                         add_special_tokens=True,
-                                         return_tensors="pt")
+                                 padding='max_length',
+                                 max_length=256,
+                                 truncation=True,
+                                 return_attention_mask=True,
+                                 add_special_tokens=True,
+                                 return_tensors="pt")
+                            
         print("Source encoding: ",source_encoding['input_ids'].size())
         print(source_encoding)
         source_input_ids = source_encoding.input_ids.to(self.device)
