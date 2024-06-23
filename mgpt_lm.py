@@ -265,6 +265,10 @@ class MLM(nn.Module):
         #                                  return_attention_mask=True,
         #                                  add_special_tokens=True,
         #                                  return_tensors="pt")
+
+        tokenizer = AutoTokenizer.from_pretrained("./deps/flan-t5-base",legacy = True)
+        lm = T5ForConditionalGeneration.from_pretrained("./deps/flan-t5-base")
+                            
         source_encoding = self.tokenizer(texts,
                                  padding='max_length',
                                  max_length=256,
@@ -272,7 +276,9 @@ class MLM(nn.Module):
                                  return_attention_mask=True,
                                  add_special_tokens=True,
                                  return_tensors="pt")
-                            
+        print("\n\n\n\n\n\n\n\n\nDOKASDKOASODKASDKPOASDKSOAD: "
+        print(self.language_model)
+        
         print("Source encoding: ",source_encoding['input_ids'].size())
         print(source_encoding)
         source_input_ids = source_encoding.input_ids.to(self.device)
