@@ -256,7 +256,7 @@ class MLM(nn.Module):
                                          return_attention_mask=True,
                                          add_special_tokens=True,
                                          return_tensors="pt")
-        print(source_encoding['input_ids'].size())
+        print("Source encoding: ",source_encoding['input_ids'].size())
 
         source_input_ids = source_encoding.input_ids.to(self.device)
         source_attention_mask = source_encoding.attention_mask.to(self.device)
