@@ -251,6 +251,9 @@ class MLM(nn.Module):
         print("num_beams: ",num_beams)
         print("do_sample: ",do_sample)
         print("bad_words_ids: ",bad_words_ids)
+        print("\n\n\n\n\n\n\n\n\n\n\n")
+        print("Tokenizer: ",self.tokenizer)
+        print("\n\n\n\n\n\n\n\n\n\n\n")
         source_encoding = self.tokenizer(texts,
                                          padding='max_length',
                                          max_length=self.max_length,
