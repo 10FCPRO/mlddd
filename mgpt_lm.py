@@ -50,6 +50,7 @@ class MLM(nn.Module):
 
         # Instantiate language model
         print("PATH MODEL: ",model_path)
+        print("model_type: ",model_type)
         self.tokenizer = AutoTokenizer.from_pretrained(model_path, legacy=True)
         if model_type == "t5":
             self.language_model = T5ForConditionalGeneration.from_pretrained(
