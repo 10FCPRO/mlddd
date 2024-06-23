@@ -505,10 +505,12 @@ class MLM(nn.Module):
     def get_middle_str(self, content, startStr, endStr):
         try:
             startIndex = content.index(startStr)
+            print("HELL NAAA")
             if startIndex >= 0:
                 startIndex += len(startStr)
             endIndex = content.index(endStr)
         except:
+            print("I CAME HERE IN THE RETURN")
             return f'<motion_id_{self.m_codebook_size}><motion_id_0><motion_id_{self.m_codebook_size+1}>'
 
         return f'<motion_id_{self.m_codebook_size}>' + content[
