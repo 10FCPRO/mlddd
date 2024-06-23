@@ -323,8 +323,8 @@ class MLM(nn.Module):
         #     self.tokenizer.padding_side = 'left'
 
                     
-        outputs2 = self.language_model.generate(
-            source_input_ids2,
+        outputs2 = lm.generate(
+            source_input_ids,
             max_length=256,
             num_beams=1,
             do_sample=True,
