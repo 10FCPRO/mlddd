@@ -506,6 +506,10 @@ class MLM(nn.Module):
         try:
             startIndex = content.index(startStr)
             print("HELL NAAA")
+            print("content: ",content)
+            print("startStr: ",startStr)
+            print("startIndex: ",startIndex)
+            print("endStr: ",endStr)
             if startIndex >= 0:
                 startIndex += len(startStr)
             endIndex = content.index(endStr)
