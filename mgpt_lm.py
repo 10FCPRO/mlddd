@@ -97,8 +97,9 @@ class MLM(nn.Module):
 
     def forward(self, texts: List[str], motion_tokens: Tensor,
                 lengths: List[int], tasks: dict):
-
-        print("A7OOOOOOOOOOOO")
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print("100")
+        print("\n\n\n\n\n\n\n\n\n\n")
         if self.lm_type == 'encdec':
             return self.forward_encdec(texts, motion_tokens, lengths, tasks)
         elif self.lm_type == 'dec':
@@ -113,7 +114,9 @@ class MLM(nn.Module):
         lengths: List[int],
         tasks: dict,
     ):
-
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(101)
+        print("\n\n\n\n\n\n\n\n\n\n")
         # Tensor to string
         motion_strings = self.motion_token_to_string(motion_tokens, lengths)
 
@@ -193,7 +196,10 @@ class MLM(nn.Module):
         motion_tokens: Tensor,
         lengths: List[int],
         tasks: dict,
-    ):
+    ):  
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(102)
+        print("\n\n\n\n\n\n\n\n\n\n")
         print("I AM HERE NIGGA")
         self.tokenizer.padding_side = "right"
 
@@ -319,7 +325,9 @@ class MLM(nn.Module):
                              with_len: bool = False,
                              stage: str = 'train',
                              tasks: dict = None):
-
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(103)
+        print("\n\n\n\n\n\n\n\n\n\n")
         self.device = self.language_model.device
 
         if task in ["t2m", "m2m", "pred", "inbetween"]:
@@ -417,6 +425,9 @@ class MLM(nn.Module):
             return cleaned_text
 
     def motion_token_to_string(self, motion_token: Tensor, lengths: List[int]):
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(104)
+        print("\n\n\n\n\n\n\n\n\n\n")
         motion_string = []
         for i in range(len(motion_token)):
             motion_i = motion_token[i].cpu(
@@ -429,6 +440,9 @@ class MLM(nn.Module):
         return motion_string
 
     def motion_token_list_to_string(self, motion_token: Tensor):
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(105)
+        print("\n\n\n\n\n\n\n\n\n\n")
         motion_string = []
         for i in range(len(motion_token)):
             motion_i = motion_token[i].cpu(
@@ -441,6 +455,9 @@ class MLM(nn.Module):
         return motion_string
 
     def motion_string_to_token(self, motion_string: List[str]):
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(106)
+        print("\n\n\n\n\n\n\n\n\n\n")
         motion_tokens = []
         output_string = []
         for i in range(len(motion_string)):
@@ -464,7 +481,9 @@ class MLM(nn.Module):
 
     def placeholder_fulfill(self, prompt: str, length: int, motion_string: str,
                             text: str):
-
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(107)
+        print("\n\n\n\n\n\n\n\n\n\n")
         seconds = math.floor(length / self.framerate)
         motion_splited = motion_string.split('>')
         token_length = length / self.down_t
@@ -503,6 +522,9 @@ class MLM(nn.Module):
                          motion_strings,
                          texts,
                          stage='test'):
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(112)
+        print("\n\n\n\n\n\n\n\n\n\n")
         inputs = []
         outputs = []
         for i in range(len(lengths)):
@@ -519,6 +541,9 @@ class MLM(nn.Module):
         return inputs, outputs
 
     def get_middle_str(self, content, startStr, endStr):
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(108)
+        print("\n\n\n\n\n\n\n\n\n\n")
         try:
             startIndex = content.index(startStr)
             print("HELL NAAA")
@@ -537,6 +562,9 @@ class MLM(nn.Module):
             startIndex:endIndex] + f'<motion_id_{self.m_codebook_size+1}>'
 
     def random_spans_noise_mask(self, length):
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(109)
+        print("\n\n\n\n\n\n\n\n\n\n")
         # From https://github.com/google-research/text-to-text-transfer-transformer/blob/84f8bcc14b5f2c03de51bd3587609ba8f6bbd1cd/t5/data/preprocessors.py
 
         orig_length = length
@@ -553,6 +581,9 @@ class MLM(nn.Module):
 
         # pick the lengths of the noise spans and the non-noise spans
         def _random_segmentation(num_items, num_segments):
+            print("\n\n\n\n\n\n\n\n\n\n")
+            print(111)
+            print("\n\n\n\n\n\n\n\n\n\n")
             """Partition a sequence of items randomly into non-empty segments.
             Args:
                 num_items: an integer scalar > 0
@@ -587,6 +618,9 @@ class MLM(nn.Module):
         return is_noise[:orig_length]
 
     def create_sentinel_ids(self, mask_indices):
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(109)
+        print("\n\n\n\n\n\n\n\n\n\n")
         # From https://github.com/huggingface/transformers/blob/main/examples/flax/language-modeling/run_t5_mlm_flax.py
         start_indices = mask_indices - np.roll(mask_indices, 1,
                                                axis=-1) * mask_indices
@@ -602,6 +636,9 @@ class MLM(nn.Module):
         return sentinel_ids
 
     def filter_input_ids(self, input_ids, sentinel_ids):
+        print("\n\n\n\n\n\n\n\n\n\n")
+        print(110)
+        print("\n\n\n\n\n\n\n\n\n\n")
         # From https://github.com/huggingface/transformers/blob/main/examples/flax/language-modeling/run_t5_mlm_flax.py
         batch_size = input_ids.shape[0]
 
