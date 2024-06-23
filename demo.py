@@ -162,7 +162,7 @@ def main():
         
         state_dict = torch.load(cfg.TEST.CHECKPOINTS,
                                 map_location="cpu")["state_dict"]
-
+        print(state_dict)
         model.load_state_dict(state_dict)
     else:
         logger.warning(
