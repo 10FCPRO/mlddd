@@ -276,7 +276,7 @@ class MLM(nn.Module):
                                  return_attention_mask=True,
                                  add_special_tokens=True,
                                  return_tensors="pt")
-        print("\n\n\n\n\n\n\n\n\nDOKASDKOASODKASDKPOASDKSOAD: "
+        print("\n\n\n\n\n\n\n\n\nDOKASDKOASODKASDKPOASDKSOAD: ")
         print(self.language_model)
         
         print("Source encoding: ",source_encoding['input_ids'].size())
