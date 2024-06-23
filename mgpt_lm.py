@@ -267,8 +267,34 @@ class MLM(nn.Module):
         #                                  return_tensors="pt")
 
         tokenizer = AutoTokenizer.from_pretrained("./deps/flan-t5-base",legacy = True)
+        tokenizer.add_tokens([f'<motion_id_{i}>' for i in range(512 + 3)])
+
         lm = T5ForConditionalGeneration.from_pretrained("./deps/flan-t5-base")
+        lm.resize_token_embeddings(len(tokenizer))
+
+        
                             
+        source_encoding2 = tokenizer(texts,
+                                 padding='max_length',
+                                 max_length=256,
+                                 truncation=True,
+                                 return_attention_mask=True,
+                                 add_special_tokens=True,
+                                 return_tensors="pt")
+
+        print("source encoding: ",source_encoding2['input_ids'].size())
+        print(source_encoding2)
+        source_input_ids2 = source_encoding2.input_ids.to("cuda:0")
+        source_attention_mask2 = source_encoding2.attention_mask.to("cuda:0")     
+
+        outputs2 = lm.generate(
+            source_input_ids2,
+            max_length=256,
+            num_beams=1,
+            do_sample=True,
+            bad_words_ids=None,
+        )
+        print("output 2: ",outputs2.size())
         source_encoding = self.tokenizer(texts,
                                  padding='max_length',
                                  max_length=256,
