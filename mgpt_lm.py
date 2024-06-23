@@ -263,9 +263,8 @@ class MLM(nn.Module):
         print(source_encoding)
         source_input_ids = source_encoding.input_ids.to(self.device)
         source_attention_mask = source_encoding.attention_mask.to(self.device)
-        print("\n\n\n\nbad words ids: ")
-        print(type(bad_words_ids))
-        print(bad_words_ids)
+        print("\n\n\nlm type: ",self.lm_type)
+
         if self.lm_type == 'encdec':
             outputs = self.language_model.generate(
                 source_input_ids,
