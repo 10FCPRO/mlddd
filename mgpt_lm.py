@@ -251,9 +251,7 @@ class MLM(nn.Module):
         print("num_beams: ",num_beams)
         print("do_sample: ",do_sample)
         print("bad_words_ids: ",bad_words_ids)
-        print("\n\n\n\n\n\n\n\n\n\n\n")
-        print("Tokenizer: ",self.tokenizer)
-        print("\n\n\n\n\n\n\n\n\n\n\n")
+
         source_encoding = self.tokenizer(texts,
                                          padding='max_length',
                                          max_length=self.max_length,
@@ -262,7 +260,7 @@ class MLM(nn.Module):
                                          add_special_tokens=True,
                                          return_tensors="pt")
         print("Source encoding: ",source_encoding['input_ids'].size())
-
+        print(source_encoding)
         source_input_ids = source_encoding.input_ids.to(self.device)
         source_attention_mask = source_encoding.attention_mask.to(self.device)
 
