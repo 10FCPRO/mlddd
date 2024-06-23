@@ -79,7 +79,6 @@ class MLM(nn.Module):
             self.language_model.resize_token_embeddings(len(self.tokenizer))
             self.language_model.shared = shared
             # self.language_model.lm_head = lm_head
-        print("LORA: ",lora)
         # Lora
         if lora:
             from peft import LoraConfig, TaskType, get_peft_model, get_peft_model_state_dict
@@ -239,7 +238,7 @@ class MLM(nn.Module):
 
         # Device
         self.device = self.language_model.device
-        print("LM_TYPE: ",self.lm_type)
+
         # Tokenize
         if self.lm_type == 'dec':
             texts = [text + " \n " for text in texts]
@@ -262,7 +261,6 @@ class MLM(nn.Module):
         source_attention_mask = source_encoding.attention_mask.to(self.device)
 
         if self.lm_type == 'encdec':
-            print(max_length,num_beams,do_sample,bad_words_ids)
             outputs = self.language_model.generate(
                 source_input_ids,
                 max_length=max_length,
@@ -278,15 +276,18 @@ class MLM(nn.Module):
                 do_sample=do_sample,
                 max_new_tokens=max_length)
             self.tokenizer.padding_side = 'left'
-        
+            
         print("OUTPUTS LALAL: ",outputs.size())
 
         outputs_string = self.tokenizer.batch_decode(outputs,
                                                      skip_special_tokens=True)
+        
+        print("String all: ",outputs_string)
         print("STRING: ",outputs_string[0])
         outputs_tokens, cleaned_text = self.motion_string_to_token(
             outputs_string)
-
+        print("Output tokens: ",outputs_tokens)
+        print(outputs_tokens[0].size())
         return outputs_tokens, cleaned_text
 
     def generate_conditional(self,
