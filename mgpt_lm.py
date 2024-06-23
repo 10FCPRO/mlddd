@@ -288,14 +288,6 @@ class MLM(nn.Module):
         source_input_ids2 = source_encoding2.input_ids.to("cuda:0")
         source_attention_mask2 = source_encoding2.attention_mask.to("cuda:0")     
 
-        outputs2 = lm.generate(
-            source_input_ids2,
-            max_length=256,
-            num_beams=1,
-            do_sample=True,
-            bad_words_ids=None,
-        )
-        print("output 2: ",outputs2.size())
         source_encoding = self.tokenizer(texts,
                                  padding='max_length',
                                  max_length=256,
@@ -329,6 +321,16 @@ class MLM(nn.Module):
         #         do_sample=do_sample,
         #         max_new_tokens=max_length)
         #     self.tokenizer.padding_side = 'left'
+
+                    
+        outputs2 = lm.generate(
+            source_input_ids,
+            max_length=256,
+            num_beams=1,
+            do_sample=True,
+            bad_words_ids=None,
+        )
+        print("outputs2 : ",outputs2.size())               
         outputs = self.language_model.generate(
             source_input_ids,
             max_length=256,
