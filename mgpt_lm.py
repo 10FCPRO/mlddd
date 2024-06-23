@@ -241,7 +241,7 @@ class MLM(nn.Module):
 
         # Device
         self.device = self.language_model.device
-
+        print("DEVICEEEEEEEEEEEEE: ",self.device)
         # Tokenize
         if self.lm_type == 'dec':
             texts = [text + " \n " for text in texts]
