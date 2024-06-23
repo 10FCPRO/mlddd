@@ -41,6 +41,8 @@ class MotionGPT(BaseModel):
             self.vae = instantiate_from_config(motion_vae)
 
         # Instantiate motion-language model
+        print("\n\n\n\n\n\n\n\n\nLMLMLMLMLM: ")
+        print(lm)
         self.lm = instantiate_from_config(lm)
 
         # Freeze the motion tokenizer for lm training
