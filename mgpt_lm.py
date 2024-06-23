@@ -272,7 +272,8 @@ class MLM(nn.Module):
         lm = T5ForConditionalGeneration.from_pretrained("./deps/flan-t5-base")
         lm.resize_token_embeddings(len(tokenizer))
 
-        
+        lm.to("cuda:0")
+
                             
         source_encoding2 = tokenizer(texts,
                                  padding='max_length',
