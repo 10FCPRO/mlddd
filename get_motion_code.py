@@ -30,7 +30,8 @@ def main():
     print(datasets)
     print("datasets module initialized")
     output_dir = os.path.join(datasets.hparams.data_root, cfg.DATASET.CODE_PATH)
-
+    print(output_dir)
+    
     os.makedirs(output_dir, exist_ok=True)
 
     # create model
