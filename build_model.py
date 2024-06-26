@@ -1,5 +1,5 @@
 from omegaconf import OmegaConf
-from mld.config import instantiate_from_config
+from mGPT.config import instantiate_from_config
 
 def build_model(cfg, datamodule):
     print("CFG.Model ",cfg.model)
