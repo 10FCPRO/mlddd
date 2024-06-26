@@ -172,6 +172,7 @@ def parse_args(phase="train"):
     cfg_exp = OmegaConf.merge(cfg_base, OmegaConf.load(params.cfg))
     if not cfg_exp.FULL_CONFIG:
         cfg_exp = get_module_config(cfg_exp, cfg_assets.CONFIG_FOLDER)
+    print("FESFES: ",cfg_exp.model, cfg_exp.model.target)
     cfg = OmegaConf.merge(cfg_exp, cfg_assets)
 
     # Update config with arguments
