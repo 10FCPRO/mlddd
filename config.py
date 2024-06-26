@@ -10,7 +10,7 @@ def get_module_config(cfg, filepath="./configs"):
     """
     Load yaml config files from subfolders
     """
-
+    print("filepath: ",filepath)
     yamls = glob.glob(pjoin(filepath, '*', '*.yaml'))
     yamls = [y.replace(filepath, '') for y in yamls]
     for yaml in yamls:
