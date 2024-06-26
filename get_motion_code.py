@@ -25,6 +25,9 @@ def main():
 
     # create dataset
     datasets = build_data(cfg, phase='token')
+    print("\n\n\n\n\n\n\n\n\\n")
+    print("datasets: ")
+    print(datasets)
     print("datasets module initialized")
     output_dir = os.path.join(datasets.hparams.data_root, cfg.DATASET.CODE_PATH)
 
