@@ -32,7 +32,7 @@ def main():
     output_dir = os.path.join(datasets.hparams.data_root, cfg.DATASET.CODE_PATH)
     print(output_dir)
     print(cfg)
-    os.makedirs(output_dir, exist_ok=True)
+    #os.makedirs(output_dir, exist_ok=True)
 
     # create model
     model = build_model(cfg, datasets)
