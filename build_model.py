@@ -6,4 +6,5 @@ def build_model(cfg, datamodule):
     model_config = OmegaConf.to_container(cfg.model, resolve=True)
     model_config['params']['cfg'] = cfg
     model_config['params']['datamodule'] = datamodule
+    print(model_config)
     return instantiate_from_config(model_config)
