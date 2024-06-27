@@ -47,7 +47,8 @@ class MLD(BaseModel):
         self.guidance_scale = cfg.model.guidance_scale
         self.guidance_uncodp = cfg.model.guidance_uncondp
         self.datamodule = datamodule
-
+        print("lplplplplplplplplp")
+        print(cfg)
         try:
             self.vae_type = cfg.model.vae_type
         except:
