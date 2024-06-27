@@ -44,7 +44,7 @@ class MotionGPT(BaseModel):
         print("\n\n\n\n\n\n\n\n\nLMLMLMLMLM: ")
         print(lm)
         self.lm = instantiate_from_config(lm)
-
+        print("FELALALALALLA: ",self.hparams.stage)
         # Freeze the motion tokenizer for lm training
         if 'lm' in self.hparams.stage:
             self.vae.training = False
