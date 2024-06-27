@@ -165,6 +165,7 @@ def parse_args(phase="train"):
     print("cfg_model: ",cfg_model)
     cfg_assets = OmegaConf.load(params.cfg_assets)
     cfg = OmegaConf.merge(cfg_exp, cfg_model, cfg_assets)
+    print(cfg)
 
     if phase in ["train", "test"]:
         cfg.TRAIN.BATCH_SIZE = (params.batch_size
