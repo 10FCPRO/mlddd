@@ -173,15 +173,10 @@ def parse_args(phase="train"):
     # Load yaml config files
     OmegaConf.register_new_resolver("eval", eval)
     cfg_assets = OmegaConf.load(params.cfg_assets)
-    print("CFG_Assets: ",cfg_assets)
     cfg_base = OmegaConf.load(pjoin(cfg_assets.CONFIG_FOLDER, 'default.yaml'))
-    print("CFG_base: ",cfg_base)
     cfg_exp = OmegaConf.merge(cfg_base, OmegaConf.load(params.cfg))
-    print("CFG_exp 1: ",cfg_exp)
     if not cfg_exp.FULL_CONFIG:
         cfg_exp = get_module_config(cfg_exp, cfg_assets.CONFIG_FOLDER)
-        print("CFG_exp 2: ",cfg_exp)
-    print("FESFES: ",cfg_exp.model, cfg_exp.model.target)
     cfg = OmegaConf.merge(cfg_exp, cfg_assets)
     print("CFG: ",cfg)
 
