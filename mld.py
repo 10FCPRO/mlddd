@@ -34,8 +34,7 @@ class MLD(BaseModel):
         super().__init__()
 
         self.cfg = cfg
-        print("A7ooooooo: ",cfg.model.lm)
-        x = input()
+
         self.stage = cfg.TRAIN.STAGE
         self.condition = cfg.model.condition
         self.is_vae = cfg.model.vae
