@@ -27,8 +27,13 @@ def get_obj_from_str(string, reload=False):
     """
     print("RELOAD: ",reload)
     print("String: ",string)
-
+        
     module, cls = string.rsplit(".", 1)
+    
+    local_vars = locals().copy()
+    for var, value in local_vars.items():
+        print(f"{var} = {value}")
+        
     if reload:
         module_imp = importlib.import_module(module)
         importlib.reload(module_imp)
