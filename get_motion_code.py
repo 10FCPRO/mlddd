@@ -34,7 +34,7 @@ def main():
     print(cfg)
     print("O)O)O)O)O)O)O)O)O)O)O)")
     print(cfg.lm.default.params.ablation)
-    print("kokokokoko")
+    print("\n\n\n\n\n\kokokokoko")
     print(cfg.model.params.motion_vae)
     #os.makedirs(output_dir, exist_ok=True)
 
