@@ -22,7 +22,7 @@ def main():
     if cfg.ACCELERATOR == "gpu":
         os.environ["PYTHONWARNINGS"] = "ignore"
         os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
+    
     # create dataset
     datasets = build_data(cfg, phase='token')
     print("\n\n\n\n\n\n\n\n\\n")
@@ -32,6 +32,8 @@ def main():
     output_dir = os.path.join(datasets.hparams.data_root, cfg.DATASET.CODE_PATH)
     print(output_dir)
     print(cfg)
+    print("O)O)O)O)O)O)O)O)O)O)O)")
+    print(cfg.lm.default.params.ablation)
     #os.makedirs(output_dir, exist_ok=True)
 
     # create model
