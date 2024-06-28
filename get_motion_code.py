@@ -51,7 +51,8 @@ def main():
 
     if cfg.ACCELERATOR == "gpu":
         model = model.to('cuda')
-
+    print(datasets)
+    print(datasets.train_dataloader())
     for batch in tqdm(datasets.train_dataloader(),
                       desc=f'motion tokenize'):
         name = batch['text']
