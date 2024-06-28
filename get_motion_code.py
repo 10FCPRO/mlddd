@@ -41,6 +41,7 @@ def main():
     # create model
     model = build_model(cfg, datasets)
     if hasattr(model, "motion_vae"):
+        print("I entered in ur hole")
         model.vae = model.motion_vae
     print("model loaded")
 
