@@ -378,7 +378,7 @@ class MotionGPT(BaseModel):
     def allsplit_step(self, split: str, batch, batch_idx):
         # Compute the losses
         loss = None
-
+        print("in mgpt: ",self.hparams.stage)
         if self.hparams.stage == "vae" and split in ["train", "val"]:
             rs_set = self.train_vae_forward(batch)
             loss = self._losses['losses_' + split].update(rs_set)
