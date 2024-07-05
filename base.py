@@ -37,7 +37,7 @@ class BaseMetrics(nn.Module):
             jointstype=cfg.DATASET.JOINT_TYPE,
             dist_sync_on_step=cfg.METRIC.DIST_SYNC_ON_STEP,
         )
-        print(cfg.DATASET.JOINT_TYPE)
+        print("lplplplplp: ",cfg.DATASET.JOINT_TYPE)
         self.PredMetrics = PredMetrics(
             cfg=cfg,
             njoints=njoints,
