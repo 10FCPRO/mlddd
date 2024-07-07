@@ -46,7 +46,6 @@ class Text2MotionDatasetToken(data.Dataset):
         new_name_list = []
         length_list = []
         data_dict = {}
-        print("motion_dir: ",motion_dir)
 
         for name in self.id_list:
             try:
@@ -74,7 +73,7 @@ class Text2MotionDatasetToken(data.Dataset):
         
     def __getitem__(self, item):
         print("ITem: ",item)
-        print(self.name_list)
+
         name = self.name_list[item]
         data = self.data_dict[name]
         motion, m_length = data['motion'], data['length']
