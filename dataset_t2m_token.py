@@ -46,6 +46,8 @@ class Text2MotionDatasetToken(data.Dataset):
         new_name_list = []
         length_list = []
         data_dict = {}
+        print("motion_dir: ",motion_dir)
+
         for name in self.id_list:
             try:
                 motion = np.load(pjoin(motion_dir, name + '.npy'))
