@@ -17,7 +17,6 @@ class BASEDataModule(pl.LightningDataModule):
     def get_sample_set(self, overrides={}):
         sample_params = self.hparams.copy()
         sample_params.update(overrides)
-        print("samples_params: ",sample_params)
         return self.DatasetEval(**sample_params)
 
     @property
