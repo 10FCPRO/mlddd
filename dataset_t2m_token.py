@@ -49,7 +49,6 @@ class Text2MotionDatasetToken(data.Dataset):
 
         for name in self.id_list:
             try:
-                print(name)
                 motion = np.load(pjoin(motion_dir, name + '.npy'))
                 if (len(motion)) <  self.min_motion_length or (len(motion) >= 200):
                     continue
