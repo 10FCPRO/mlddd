@@ -30,27 +30,19 @@ class Text2MotionDatasetToken(data.Dataset):
         # Data mean and std
         self.mean = mean
         self.std = std
-        print("//////////////////////////////////////////////////////////////")
-        print("max_motion_length: ",max_motion_length)
-        print("min_motion_length: ",min_motion_length)
-        print("unit_length: ",unit_length)
-        print("mean: ",mean)
-        print("std: ",std)
+
 
         # Data path
         split_file = pjoin(data_root, split + '.txt')
         motion_dir = pjoin(data_root, 'new_joint_vecs')
         text_dir = pjoin(data_root, 'texts')
 
-        print("split_file: ",split_file)
-        print("motion_dir: ",motion_dir)
 
         # Data id list
         self.id_list = []
         with cs.open(split_file, "r") as f:
             for line in f.readlines():
                 self.id_list.append(line.strip())
-        print("self.id_list: ",self.id_list)
         new_name_list = []
         length_list = []
         data_dict = {}
@@ -68,13 +60,9 @@ class Text2MotionDatasetToken(data.Dataset):
             except:
                 # Some motion may not exist in KIT dataset
                 pass
-        print("new_name_list: ",new_name_list)
-        print("length_list: ",length_list)
-        print("data_dict: ",data_dict)
         self.length_arr = np.array(length_list)
         self.data_dict = data_dict
         self.name_list = new_name_list
-        print("Motion.shape[-1]: ",motion.shape[-1])
         self.nfeats = motion.shape[-1]
     
     
