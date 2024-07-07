@@ -73,6 +73,8 @@ class Text2MotionDatasetToken(data.Dataset):
         return len(self.data_dict)  
         
     def __getitem__(self, item):
+        print("ITem: ",item)
+        print(self.name_list)
         name = self.name_list[item]
         data = self.data_dict[name]
         motion, m_length = data['motion'], data['length']
