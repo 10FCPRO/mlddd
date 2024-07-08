@@ -36,6 +36,7 @@ class MotionGPT(BaseModel):
         self.datamodule = datamodule
         super().__init__()
 
+        print("motion_vae: ",motion_vae)
         # Instantiate motion tokenizer
         if motion_vae != None:
             self.vae = instantiate_from_config(motion_vae)
