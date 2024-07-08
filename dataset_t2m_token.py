@@ -30,7 +30,8 @@ class Text2MotionDatasetToken(data.Dataset):
         # Data mean and std
         self.mean = mean
         self.std = std
-
+        print("mean: ",mean)
+        print("std: ",std)
 
         # Data path
         split_file = pjoin(data_root, split + '.txt')
