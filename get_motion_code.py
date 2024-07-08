@@ -55,6 +55,7 @@ def main():
     print(datasets.train_dataloader())
     for batch in tqdm(datasets.train_dataloader(),
                       desc=f'motion tokenize'):
+        print("BATCH: ",batch)
         name = batch['text']
         
         pose = batch['motion']
